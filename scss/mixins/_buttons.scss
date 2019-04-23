@@ -22,9 +22,14 @@
     border-color: $hover-border;
     // Avoid using mixin so we can pass custom focus shadow properly
     @if $enable-shadows {
-      box-shadow: $btn-box-shadow, 0 0 0 $btn-focus-width rgba(try-mix(try-color-yiq($background), $border, 15%), .5);
+      box-shadow: $btn-box-shadow, 0 0 0 $btn-focus-width rgba(mix(try-color-yiq($background), $border, 15%), .5);
     } @else {
-      box-shadow: 0 0 0 $btn-focus-width rgba(try-mix(try-color-yiq($background), $border, 15%), .5);
+      @if $enable-variables {
+        box-shadow: 0 0 0 $btn-focus-width try-lighten($background, 10);
+      }
+      @else{
+        box-shadow: 0 0 0 $btn-focus-width rgba(mix(try-color-yiq($background), $border, 15%), .5);
+      }
     }
   }
 
@@ -53,9 +58,14 @@
     &:focus {
       // Avoid using mixin so we can pass custom focus shadow properly
       @if $enable-shadows and $btn-active-box-shadow != none {
-        box-shadow: $btn-active-box-shadow, 0 0 0 $btn-focus-width rgba(try-mix(try-color-yiq($background), $border, 15%), .5);
+        box-shadow: $btn-active-box-shadow, 0 0 0 $btn-focus-width rgba(mix(try-color-yiq($background), $border, 15%), .5);
       } @else {
-        box-shadow: 0 0 0 $btn-focus-width rgba(try-mix(try-color-yiq($background), $border, 15%), .5);
+        @if $enable-variables {
+          box-shadow: 0 0 0 $btn-focus-width try-lighten($background, 10%);
+        }
+        @else{
+          box-shadow: 0 0 0 $btn-focus-width rgba(mix(try-color-yiq($background), $border, 15%), .5);
+        }
       }
     }
   }

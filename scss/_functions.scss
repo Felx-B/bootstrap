@@ -79,10 +79,17 @@
 // Request a theme color level
 @function theme-color-level($color-name: "primary", $level: 0) {
   $color: theme-color($color-name);
+
+  @if enable-variables {
+    @if $level > 0 {
+      @return try-darken($color, $level * $theme-color-interval / 2);
+    }
+    @return try-lighten($color, abs($level * $theme-color-interval) / 2);
+  }
+
   $color-base: if($level > 0, $black, $white);
   $level: abs($level);
-
-  @return try-mix($color-base, $color, $level * $theme-color-interval);
+  @return mix($color-base, $color, $level * $theme-color-interval);
 }
 
 @function try-darken($color, $percent) {
@@ -91,14 +98,14 @@
     @return darken($color, $percent);
   }
 
-  @each $themecolor, $value in $theme-colors {
-    @if $value == $color {
-      $percent-str: "#{$percent * 100}";
-      $percent-value: str_slice($percent-str, 0, str_length($percent-str) - 1);
-      $variable: --#{$themecolor}-darken-#{$percent-value};
-      @return var($variable);
-    }
+  @if str_slice("#{$color}", 0, 3) == "var" {
+    $percent-str: "#{$percent * 100}";
+    $percent-value: str_slice($percent-str, 0, str_length($percent-str) - 1);
+    $original: str_slice($color, 7, str_length($color) - 1);
+    $variable: --#{$original}-darken-#{$percent-value};
+    @return var($variable);
   }
+
   @return darken($color, $percent);
 }
 
@@ -108,14 +115,14 @@
     @return lighten($color, $percent);
   }
 
-  @each $themecolor, $value in $theme-colors {
-    @if $value == $color {
-      $percent-str: "#{$percent * 100}";
-      $percent-value: str_slice($percent-str, 0, str_length($percent-str) - 1);
-      $variable: --#{$themecolor}-lighten-#{$percent-value};
-      @return var($variable);
-    }
+  @if str_slice("#{$color}", 0, 3) == "var" {
+    $percent-str: "#{$percent * 100}";
+    $percent-value: str_slice($percent-str, 0, str_length($percent-str) - 1);
+    $original: str_slice($color, 7, str_length($color) - 1);
+    $variable: --#{$original}-lighten-#{$percent-value};
+    @return var($variable);
   }
+
   @return lighten($color, $percent);
 }
 
@@ -133,18 +140,4 @@
   }
 
   @return color-yiq($color, $dark, $light);
-}
-
-
-@function try-mix($color-base, $color, $level){
-
-  @if (not $enable-variables){
-    @return mix($color-base, $color, $level);
-  }
-
-  @if (str_slice("#{$color}", 0, 3) == "var" or str_slice("#{$color-base}", 0, 3) == "var") {
-    @return $color-base; //TODO
-  }
-
-  @return mix($color-base, $color, $level);
 }
