@@ -86,7 +86,7 @@
 .bd-example-container-header {
   height: 3rem;
   margin-bottom: .5rem;
-  background-color: lighten($blue, 50%);
+  background-color: try-lighten($blue, 50%);
   @include border-radius;
 }
 
@@ -94,14 +94,14 @@
   float: right;
   width: 4rem;
   height: 8rem;
-  background-color: lighten($blue, 25%);
+  background-color: try-lighten($blue, 25%);
   @include border-radius;
 }
 
 .bd-example-container-body {
   height: 8rem;
   margin-right: 4.5rem;
-  background-color: lighten($bd-purple, 25%);
+  background-color: try-lighten($bd-purple, 25%);
   @include border-radius;
 }
 

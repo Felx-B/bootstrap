@@ -4,9 +4,25 @@
     --#{$color}: #{$value};
   }
 
-  @each $color, $value in $theme-colors {
-    --#{$color}: #{$value};
+  @if ($enable-variables){
+    @each $color, $value in $theme-colors-values {
+      --#{$color}: #{$value};
+      --#{$color}-yiq: #{color-yiq($value)};
+
+      @each $shade in $theme-colors-shades {
+        --#{$color}-darken-#{$shade * 100}: #{darken($value, $shade)};
+        --#{$color}-darken-#{$shade * 100}-yiq: #{color-yiq(darken($value, $shade))};
+        --#{$color}-lighten-#{$shade * 100}: #{lighten($value, $shade)};
+        --#{$color}-lighten-#{$shade * 100}-yiq: #{color-yiq(lighten($value, $shade))};
+      }
+    }
   }
+  @else{
+    @each $color, $value in $theme-colors {
+      --#{$color}: #{$value};
+    }
+  }
+
 
   @each $bp, $value in $grid-breakpoints {
     --breakpoint-#{$bp}: #{$value};
