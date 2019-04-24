@@ -98,7 +98,12 @@
 // inheritance to nested tables.
 
 @each $color, $value in $theme-colors {
-  @include table-row-variant($color, theme-color-level($color, $table-bg-level), theme-color-level($color, $table-border-level));
+  @if $enable-variables{
+    @include table-row-variant($color, $white);
+  }
+  @else{
+    @include table-row-variant($color, theme-color-level($color, $table-bg-level), theme-color-level($color, $table-border-level));
+  }
 }
 
 @include table-row-variant(active, $table-active-bg);

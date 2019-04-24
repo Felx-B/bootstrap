@@ -46,6 +46,12 @@
 
 @each $color, $value in $theme-colors {
   .alert-#{$color} {
-    @include alert-variant(theme-color-level($color, $alert-bg-level), theme-color-level($color, $alert-border-level), theme-color-level($color, $alert-color-level));
+
+    @if $enable-variables {
+      @include alert-variant(try-lighten($value, 40%), try-lighten($value, 40%), try-darken($value, 25%));
+    }
+    @else {
+      @include alert-variant(theme-color-level($color, $alert-bg-level), theme-color-level($color, $alert-border-level), theme-color-level($color, $alert-color-level));
+    }
   }
 }
