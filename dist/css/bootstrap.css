@@ -1619,121 +1619,121 @@ pre code {
 .table-primary,
 .table-primary > th,
 .table-primary > td {
-  background-color: #fff;
+  background-color: var(--primary-lighten-4000);
 }
 
 .table-hover .table-primary:hover {
-  background-color: #f2f2f2;
+  background-color: var(--primary-lighten-3500);
 }
 
 .table-hover .table-primary:hover > td,
 .table-hover .table-primary:hover > th {
-  background-color: #f2f2f2;
+  background-color: var(--primary-lighten-3500);
 }
 
 .table-secondary,
 .table-secondary > th,
 .table-secondary > td {
-  background-color: #fff;
+  background-color: var(--secondary-lighten-4000);
 }
 
 .table-hover .table-secondary:hover {
-  background-color: #f2f2f2;
+  background-color: var(--secondary-lighten-3500);
 }
 
 .table-hover .table-secondary:hover > td,
 .table-hover .table-secondary:hover > th {
-  background-color: #f2f2f2;
+  background-color: var(--secondary-lighten-3500);
 }
 
 .table-success,
 .table-success > th,
 .table-success > td {
-  background-color: #fff;
+  background-color: var(--success-lighten-4000);
 }
 
 .table-hover .table-success:hover {
-  background-color: #f2f2f2;
+  background-color: var(--success-lighten-3500);
 }
 
 .table-hover .table-success:hover > td,
 .table-hover .table-success:hover > th {
-  background-color: #f2f2f2;
+  background-color: var(--success-lighten-3500);
 }
 
 .table-info,
 .table-info > th,
 .table-info > td {
-  background-color: #fff;
+  background-color: var(--info-lighten-4000);
 }
 
 .table-hover .table-info:hover {
-  background-color: #f2f2f2;
+  background-color: var(--info-lighten-3500);
 }
 
 .table-hover .table-info:hover > td,
 .table-hover .table-info:hover > th {
-  background-color: #f2f2f2;
+  background-color: var(--info-lighten-3500);
 }
 
 .table-warning,
 .table-warning > th,
 .table-warning > td {
-  background-color: #fff;
+  background-color: var(--warning-lighten-4000);
 }
 
 .table-hover .table-warning:hover {
-  background-color: #f2f2f2;
+  background-color: var(--warning-lighten-3500);
 }
 
 .table-hover .table-warning:hover > td,
 .table-hover .table-warning:hover > th {
-  background-color: #f2f2f2;
+  background-color: var(--warning-lighten-3500);
 }
 
 .table-danger,
 .table-danger > th,
 .table-danger > td {
-  background-color: #fff;
+  background-color: var(--danger-lighten-4000);
 }
 
 .table-hover .table-danger:hover {
-  background-color: #f2f2f2;
+  background-color: var(--danger-lighten-3500);
 }
 
 .table-hover .table-danger:hover > td,
 .table-hover .table-danger:hover > th {
-  background-color: #f2f2f2;
+  background-color: var(--danger-lighten-3500);
 }
 
 .table-light,
 .table-light > th,
 .table-light > td {
-  background-color: #fff;
+  background-color: var(--light-lighten-4000);
 }
 
 .table-hover .table-light:hover {
-  background-color: #f2f2f2;
+  background-color: var(--light-lighten-3500);
 }
 
 .table-hover .table-light:hover > td,
 .table-hover .table-light:hover > th {
-  background-color: #f2f2f2;
+  background-color: var(--light-lighten-3500);
 }
 
 .table-dark,
 .table-dark > th,
 .table-dark > td {
-  background-color: #fff;
+  background-color: var(--dark-lighten-4000);
 }
 
 .table-hover .table-dark:hover {
-  background-color: #f2f2f2;
+  background-color: var(--dark-lighten-3500);
 }
 
 .table-hover .table-dark:hover > td,
 .table-hover .table-dark:hover > th {
-  background-color: #f2f2f2;
+  background-color: var(--dark-lighten-3500);
 }
 
 .table-active,

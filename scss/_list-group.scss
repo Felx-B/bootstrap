@@ -149,6 +149,6 @@
     @include list-group-item-variant($color, try-lighten($value, 40%), try-darken($value, 25%), try-lighten($value, 35%));
   }
   @else {
-    @include list-group-item-variant($color, theme-color-level($color, -9), theme-color-level($color, 6), try-darken($background, 5%));
+    @include list-group-item-variant($color, theme-color-level($color, -9), theme-color-level($color, 6));
   }
 }

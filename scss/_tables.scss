@@ -99,7 +99,7 @@
 
 @each $color, $value in $theme-colors {
   @if $enable-variables{
-    @include table-row-variant($color, $white);
+    @include table-row-variant($color, try-lighten($value, 40%), null, try-lighten($value, 35%));
   }
   @else{
     @include table-row-variant($color, theme-color-level($color, $table-bg-level), theme-color-level($color, $table-border-level));
