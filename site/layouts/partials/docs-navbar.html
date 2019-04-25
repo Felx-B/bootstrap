@@ -25,8 +25,67 @@
       </li>
     </ul>
   </div>
+  <script>
+/**** from https://codepen.io/jreyesgs/pen/MyKoRj **/
+const addLight = function(color, amount){
+  let cc = parseInt(color,16) + amount;
+  let c = (cc > 255) ? 255 : (cc);
+  c = (c.toString(16).length > 1 ) ? c.toString(16) : `0${c.toString(16)}`;
+  return c;
+}
+
+function lighten(color, amount){
+  color = (color.indexOf("#")>=0) ? color.substring(1,color.length) : color;
+  amount = parseInt((255*amount)/100);
+  return color = `#${addLight(color.substring(0,2), amount)}${addLight(color.substring(2,4), amount)}${addLight(color.substring(4,6), amount)}`;
+}
+
+function subtractLight(color, amount){
+  let cc = parseInt(color,16) - amount;
+  let c = (cc < 0) ? 0 : (cc);
+  c = (c.toString(16).length > 1 ) ? c.toString(16) : `0${c.toString(16)}`;
+  return c;
+}
+
+function darken(color, amount) {
+  color = (color.indexOf("#")>=0) ? color.substring(1,color.length) : color;
+  amount = parseInt((255*amount)/100);
+  return color = `#${subtractLight(color.substring(0,2), amount)}${subtractLight(color.substring(2,4), amount)}${subtractLight(color.substring(4,6), amount)}`;
+}
+
+/***** from http://jsfiddle.net/decx/RRt3q/ *****/
+
+function getcontrast(hex) {
+    var r = parseInt(hex.substr(1, 2), 16),
+        g = parseInt(hex.substr(3, 2), 16),
+        b = parseInt(hex.substr(5, 2), 16),
+        yiq = ((r * 299) + (g * 587) + (b * 114)) / 1000;
+    return (yiq >= 128) ? '#212529' : 'white';
+}
+/**************/
+
+    function changePrimary(value){
+      document.documentElement.style.setProperty('--primary', value);
+      document.documentElement.style.setProperty('--primary-yiq', getcontrast(value));
+      [7.5, 10, 12.5, 25, 35, 40].forEach((el) => {
+        document.documentElement.style.setProperty(`--primary-darken-${el * 100}`, darken(value, el));
+        document.documentElement.style.setProperty(`--primary-darken-${el * 100}-yiq`, getcontrast(darken(value, el)));
+        document.documentElement.style.setProperty(`--primary-lighten-${el * 100}`, lighten(value, el));
+        document.documentElement.style.setProperty(`--primary-lighten-${el * 100}-yiq`, getcontrast(lighten(value, el)));
+      })
+    }
+  </script>
 
   <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+      <li class="nav-item">
+          <div class="card">
+            <div class="card-body">
+              Change primary color
+              <input type="color" value="#007bff" onchange="changePrimary(event.target.value)" />
+            </div>
+          </div>
+        </li>
+
     <li class="nav-item dropdown">
       <a class="nav-item nav-link dropdown-toggle mr-md-2" href="#" id="bd-versions" data-toggle="dropdown" aria-expanded="false">
         v{{ .Site.Params.docs_version }}
